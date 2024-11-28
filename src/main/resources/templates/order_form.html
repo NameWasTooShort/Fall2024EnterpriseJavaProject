@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css">
+<title>Steven's Restaurant</title>
+</head>
+
+<header> </header>
+
+<body style="background-color: black; color: white; text-align: center;">
+	<h1>Place Order:</h1>
+
+	<form method="post" th:action="@{/insertOrder}" th:object="${order}">
+		<input type="hidden" name="orderId" th:field="*{orderId}">
+		Customer Name: <input type="text" name="customerName"
+			th:field="*{customerName}"> Food ID: <input type="number"
+			name="foodId" th:field="*{foodId}" min="1" max="8"> <input
+			type="submit" value="Submit Order">
+	</form>
+
+	<section class="menu">
+		<h2>Current Orders:</h2>
+		<table style="margin-left: auto; margin-right: auto;">
+			<tr>
+				<th>Order ID:</th>
+				<th>Customer Name:</th>
+				<th>Food Id:</th>
+				<th>Food Name:</th>
+			</tr>
+
+			<tr th:each="o,iter : ${orderList}">
+				<td th:text="${o.orderId}">ID</td>
+				<td th:text="${o.customerName}">Customer Name</td>
+				<td th:text="${o.foodId}">Food ID</td>
+				<td th:text="${displayList[iter.index]}">Food Name</td>
+				<td><a th:href="@{/deleteOrderId/}+${o.orderId}">Delete</a></td>
+				<td><a th:href="@{/editOrderId/}+${o.orderId}">Edit</a></td>
+			</tr>
+		</table>
+	</section>
+	<br>
+	<a href="/">Home</a>
+</body>
+
+<footer>
+	<form method="post" th:action="@{/logout}">
+		<input type="submit" value="Logout" />
+	</form>
+</footer>
+
+<style>
+a {
+	font-weight: bold;
+	font-size: 30px;
+}
+
+body {
+	color: 'white';
+	background-color: 'black';
+}
+
+.menu {
+	color: 'white';
+	background-color: 'black';
+	text-align: 'center';
+}
+
+section {
+	color: 'white';
+	background-color: 'black';
+	text-align: 'center';
+}
+</style>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" th:href="@{style.css}">
+<title>Steven's Restaurant</title>
+</head>
+
+<header> </header>
+
+<body style="background-color:black; color:white;">
+<section style="text-align: center;">
+	<h1>Menu:</h1>
+	<table style="margin-left: auto; margin-right: auto;">
+		<tr>
+			<th>Food ID:</th>
+			<th>Food Name:</th>
+			<th>Price:</th>
+			<th>Spice Level:</th>
+		</tr>
+		
+		<tr th:each="m : ${menuList}">
+			<td th:text="${m.itemId}">ID</td> 
+			<td th:text="${m.name}">Name</td> 
+			<td th:text="${m.price}">Price</td> 
+			<td th:text="${m.spiceLevel}">Spice Level</td>
+		</tr>
+	</table>
+</section>
+<br>
+	<a href="order_form">Place Order</a> <br>
+	<a href="/secure">Add Items</a>
+</body>
+
+<footer> </footer>
+
+<style>
+  a {
+    font-weight: bold;
+    font-size: 30px;
+  }
+  body{
+	color: 'white';
+	background-color: 'black';
+}
+
+.menu{
+	color: 'white';
+	background-color: 'black';
+	text-align: 'center';
+}
+
+section{
+	color: 'white';
+	background-color: 'black';
+	text-align: 'center';
+}
+</style>

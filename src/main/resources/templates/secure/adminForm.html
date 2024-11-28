@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css">
+<title>Admin Page</title>
+</head>
+
+<header> </header>
+
+<body style="background-color: black; color: white; text-align: center;">
+<section>
+	<h1>Add Menu Item:</h1>
+
+	<form method="post" th:action="@{/secure/addMenu}" th:object="${menuItem}">
+		<input type="hidden" name="itemId" th:field="*{itemId}">
+		Menu Item Name: <input type="text" name="name" th:field="*{name}"> 
+		Menu Item Price: <input type="number" name="price" th:field="*{price}" min="0" max="99"> 
+		Menu Item Spice Level: <input type="number" name="spiceLevel" th:field="*{spiceLevel}" min="0" max="99">
+		<input type="submit" value="Submit Order">
+	</form>
+</section>
+	<section style="text-align: center;">
+	<h1>Current Menu:</h1>
+	<table style="margin-left: auto; margin-right: auto;">
+		<tr>
+			<th>Food ID:</th>
+			<th>Food Name:</th>
+			<th>Price:</th>
+			<th>Spice Level:</th>
+		</tr>
+		
+		<tr th:each="m : ${menuList}">
+			<td th:text="${m.itemId}">ID</td> 
+			<td th:text="${m.name}">Name</td> 
+			<td th:text="${m.price}">Price</td> 
+			<td th:text="${m.spiceLevel}">Spice Level</td>
+		</tr>
+	</table>
+</section>
+	<br>
+	<a href="/">Home</a>
+</body>
+
+<footer>
+	<form method="post" th:action="@{/logout}">
+		<input type="submit" value="Logout" />
+	</form>
+</footer>
+
+<style>
+a {
+	font-weight: bold;
+	font-size: 30px;
+}
+
+body {
+	color: 'white';
+	background-color: 'black';
+}
+
+.menu {
+	color: 'white';
+	background-color: 'black';
+	text-align: 'center';
+}
+
+section {
+	color: 'white';
+	background-color: 'black';
+	text-align: 'center';
+}
+</style>
